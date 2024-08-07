@@ -1,16 +1,24 @@
-# This is a sample Python script.
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+app = FastAPI()
+
+# Static files 설정
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Jinja2Templates 설정
+templates = Jinja2Templates(directory="templates")
+
+# 학생별 페이지 라우팅
+@app.get("/jihoon", response_class=HTMLResponse)
+async def read_student_page(request: Request):
+    template_path = "jihoon/index.html"
+    return templates.TemplateResponse(template_path, {"request": request})
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
