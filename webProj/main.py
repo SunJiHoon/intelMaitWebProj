@@ -1,23 +1,26 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from users import jihoon   # jihoon 모듈 임포트
+
+from users.elementary import imsoun
+from users.elementary import johayun
+from users.elementary import leedanwoo
+from users.elementary import leehaechan
+from users.elementary import notaewan
+
+from users.intermediate import junjunghyeon
+from users.intermediate import kimminjae
+from users.intermediate import lewwwoohyeon
+from users.intermediate import parksiwoo
+
 
 app = FastAPI()
 
 # Static files 설정
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Jinja2Templates 설정
-templates = Jinja2Templates(directory="templates")
-
-# 학생별 페이지 라우팅
-@app.get("/jihoon", response_class=HTMLResponse)
-async def read_student_page(request: Request):
-    template_path = "jihoon/index.html"
-    return templates.TemplateResponse(template_path, {"request": request})
-
-
+# jihoon 라우터 포함
+app.include_router(jihoon.router)
 
 if __name__ == "__main__":
     import uvicorn
