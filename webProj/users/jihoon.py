@@ -22,7 +22,6 @@ async def read_list_page(request: Request):
 
 
 
-# imsoun's calc 페이지 라우팅 (GET 요청)
 @router.get("/jihoon/calc", response_class=HTMLResponse)
 async def get_calc_page(request: Request):
     return templates.TemplateResponse("jihoon/calc.html", {"request": request})
