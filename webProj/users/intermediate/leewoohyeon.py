@@ -8,13 +8,13 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 # imsoun's index 페이지 라우팅
-@router.get("/elementary/leehaechan", response_class=HTMLResponse)
+@router.get("/intermediate/leewoohyeon", response_class=HTMLResponse)
 async def read_student_page(request: Request):
-    template_path = "elementary/leehaechan/index.html"
+    template_path = "intermediate/leewoohyeon/index.html"
     return templates.TemplateResponse(template_path, {"request": request})
 
 # imsoun's forPrac 페이지 라우팅
-@router.get("/elementary/leehaechan/forPrac", response_class=HTMLResponse)
+@router.get("/intermediate/leewoohyeon/forPrac", response_class=HTMLResponse)
 async def read_list_page(request: Request):
     items = ["Item 1", "Item 2", "Item 3", "Item 4"]
-    return templates.TemplateResponse("elementary/leehaechan/forPrac.html", {"request": request, "items": items})
+    return templates.TemplateResponse("intermediate/leewoohyeon/forPrac.html", {"request": request, "items": items})
