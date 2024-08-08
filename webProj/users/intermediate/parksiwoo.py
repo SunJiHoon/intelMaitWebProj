@@ -9,24 +9,24 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 # imsoun's index 페이지 라우팅
-@router.get("/intermediate/parksiwoo", response_class=HTMLResponse)
+@router.get("/intermediate/parksiwo", response_class=HTMLResponse)
 async def read_student_page(request: Request):
     template_path = "intermediate/parksiwoo/index.html"
     return templates.TemplateResponse(template_path, {"request": request})
 
 # imsoun's forPrac 페이지 라우팅
-@router.get("/intermediate/parksiwoo/forPrac", response_class=HTMLResponse)
+@router.get("/intermediate/parksiwo/forPrac", response_class=HTMLResponse)
 async def read_list_page(request: Request):
-    items = ["Item 1", "Item 2", "Item 3", "Item 4"]
+    items = ["im from korea", "aaaaaaa", "bbbbbbb", "cccccc 4"]
     return templates.TemplateResponse("intermediate/parksiwoo/forPrac.html", {"request": request, "items": items})
 
 
-@router.get("/intermediate/parksiwoo/calc", response_class=HTMLResponse)
+@router.get("/intermediate/parksiwo/calc", response_class=HTMLResponse)
 async def get_calc_page(request: Request):
     return templates.TemplateResponse("intermediate/parksiwoo/calc.html", {"request": request})
 
 # imsoun's calc 페이지 라우팅 (POST 요청)
-@router.post("/intermediate/parksiwoo/calc", response_class=HTMLResponse)
+@router.post("/intermediate/parksiwo/calc", response_class=HTMLResponse)
 async def post_calc_page(request: Request, num1: float = Form(...), num2: float = Form(...), operation: str = Form(...)):
     result = None
     if operation == "add":
