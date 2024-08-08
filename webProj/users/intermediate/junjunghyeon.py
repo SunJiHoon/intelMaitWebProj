@@ -9,24 +9,24 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 # imsoun's index 페이지 라우팅
-@router.get("/intermediate/junjunghyeon", response_class=HTMLResponse)
+@router.get("/intermediate/junjonghyeon", response_class=HTMLResponse)
 async def read_student_page(request: Request):
     template_path = "intermediate/junjunghyeon/index.html"
     return templates.TemplateResponse(template_path, {"request": request})
 
 # imsoun's forPrac 페이지 라우팅
-@router.get("/intermediate/junjunghyeon/forPrac", response_class=HTMLResponse)
+@router.get("/intermediate/junjonghyeon/forPrac", response_class=HTMLResponse)
 async def read_list_page(request: Request):
-    items = ["Item 1", "Item 2", "Item 3", "Item 4"]
+    items = ["전1", "종 2", "현 3", "Item 4"]
     return templates.TemplateResponse("intermediate/junjunghyeon/forPrac.html", {"request": request, "items": items})
 
 
-@router.get("/intermediate/junjunghyeon/calc", response_class=HTMLResponse)
+@router.get("/intermediate/junjonghyeon/calc", response_class=HTMLResponse)
 async def get_calc_page(request: Request):
     return templates.TemplateResponse("intermediate/junjunghyeon/calc.html", {"request": request})
 
 # imsoun's calc 페이지 라우팅 (POST 요청)
-@router.post("/intermediate/junjunghyeon/calc", response_class=HTMLResponse)
+@router.post("/intermediate/junjonghyeon/calc", response_class=HTMLResponse)
 async def post_calc_page(request: Request, num1: float = Form(...), num2: float = Form(...), operation: str = Form(...)):
     result = None
     if operation == "add":
@@ -40,4 +40,4 @@ async def post_calc_page(request: Request, num1: float = Form(...), num2: float 
             result = num1 / num2
         else:
             result = "Cannot divide by zero"
-    return templates.TemplateResponse("intermediate/junjunghyeon/calc.html", {"request": request, "result": result, "num1": num1, "num2": num2, "operation": operation})
+    return templates.TemplateResponse("intermediate/junjonghyeon/calc.html", {"request": request, "result": result, "num1": num1, "num2": num2, "operation": operation})
